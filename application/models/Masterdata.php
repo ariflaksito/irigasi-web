@@ -21,4 +21,12 @@ class Masterdata extends CI_Model {
         $this->db->Where('adminid', $id);
         $this->db->Update('admin', array('log_date'=>date('Y-m-d H:i:s')));
     }
+
+    public function countUsers(){
+        return $this->db->count_all_results('users'); 
+    }
+
+    public function countIrigasi(){
+        return $this->db->count_all_results('irigasi'); 
+    }
 }    
