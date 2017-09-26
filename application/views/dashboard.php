@@ -46,12 +46,12 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active">
+            <li>
               <a href="#"><i class="fa fa-user"></i> Users</a>
             </li>
             <li>
               <a href="#">
-                <i class="fa fa-"></i><i class="fa fa-building"></i> Bendung</a>
+                <i class="fa fa-"></i><i class="fa fa-building"></i> Irigasi</a>
             </li>            
             <li><a href="#">
               <i class="fa fa-file"></i> Data</a>
@@ -71,7 +71,7 @@
                 <!-- The user image in the navbar-->
                 <img src="assets/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                <span class="hidden-xs">Username</span>
+                <span class="hidden-xs"><?php echo $sess['user']?></span>
               </a>
               <ul class="dropdown-menu">
                 <!-- The user image in the menu -->
@@ -79,8 +79,8 @@
                   <img src="assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                   <p>
-                    Username
-                    <small>Last login</small>
+                    <?php echo $sess['fullname']?>
+                    <small><?php echo $sess['lastlog']?></small>
                   </p>
                 </li>
                 
@@ -90,7 +90,7 @@
                     <a href="#" class="btn btn-default btn-flat">Profile</a>
                   </div>
                   <div class="pull-right">
-                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                    <a href="dashboard/logout" class="btn btn-default btn-flat">Sign out</a>
                   </div>
                 </li>
               </ul>
@@ -118,7 +118,7 @@
 
       <!-- Main content -->
       <section class="content">
-        
+        <?php $this->load->view('pages/'.$page)?>
       </section>
       <!-- /.content -->
     </div>
