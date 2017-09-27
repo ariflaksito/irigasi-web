@@ -29,4 +29,14 @@ class Masterdata extends CI_Model {
     public function countIrigasi(){
         return $this->db->count_all_results('irigasi'); 
     }
+
+    public function getusers(){
+        $this->db->order_by('nama');
+        return $this->db->get('users')->result();
+    }
+
+    public function getirigasi(){
+        $this->db->order_by('nama');
+        return $this->db->get('irigasi')->result();   
+    }
 }    

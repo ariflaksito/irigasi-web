@@ -28,6 +28,44 @@ class Dashboard extends CI_Controller {
     	$this->load->view('dashboard', $this->data);
     }
 
+    public function users(){
+        $this->load->model('masterdata');
+
+        $this->data['title'] = 'Users';
+        $this->data['page']  = 'users';
+        $this->data['users'] = $this->masterdata->getusers(); 
+
+        $this->load->view('dashboard', $this->data);
+    }
+
+    public function irigasi(){
+        $this->load->model('masterdata');
+
+        $this->data['title'] = 'Irigasi';
+        $this->data['page'] = 'irigasi';
+        $this->data['irigasi'] = $this->masterdata->getirigasi();         
+
+        $this->load->view('dashboard', $this->data);
+    }
+
+    public function data(){
+        $this->load->model('masterdata');
+
+        $this->data['title'] = 'Data';
+        $this->data['page'] = 'data';
+
+        $this->load->view('dashboard', $this->data);
+    }
+
+    public function report(){
+        $this->load->model('masterdata');
+
+        $this->data['title'] = 'Report';
+        $this->data['page'] = 'report';
+
+        $this->load->view('dashboard', $this->data);
+    }
+
     public function logout()
     {
         $this->session->unset_userdata('id');
