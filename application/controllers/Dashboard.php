@@ -53,6 +53,7 @@ class Dashboard extends CI_Controller {
 
         $this->data['title'] = 'Data';
         $this->data['page'] = 'data';
+        $this->data['data'] = $this->masterdata->getdata();                 
 
         $this->load->view('dashboard', $this->data);
     }

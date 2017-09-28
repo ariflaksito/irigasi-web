@@ -15,14 +15,7 @@ class Api extends CI_Controller {
     		exit('error');
     	}
 
-    	$data = array(
-    		'uid' => $post['uid'],
-    		'irigasiid' => $post['iid'],
-    		'tinggi' => $post['tgg'],
-    		'ket' => $post['ket'],
-    		'is_banjir' => $post['fld']
-    	);
-
+    	$data = json_decode($post['params']);
     	return $this->db->insert('idata', $data);
     }
 }

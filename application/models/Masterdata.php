@@ -39,4 +39,15 @@ class Masterdata extends CI_Model {
         $this->db->order_by('nama');
         return $this->db->get('irigasi')->result();   
     }
+
+    public function getdata(){
+        $sql = "select u.nama, i.nama as irigasi, tinggi, ket, datetime, 
+            desa, kecamatan, kabupaten
+            from idata d
+            join users u On d.uid = u.uid
+            join irigasi i On i.irigasiid = d.irigasiid
+            Order by datetime desc";
+
+        return $this->db->query($sql)->result();    
+    }
 }    
