@@ -35,7 +35,7 @@ class Login extends CI_Controller {
             redirect('/login');
         }else{
             $this->load->model('masterdata');
-            $row = $this->masterdata->userlogin($usr, $pwd);
+            $row = $this->masterdata->adminlogin($usr, $pwd);
 
             if($row!=NULL){
                 $newdata = array(
