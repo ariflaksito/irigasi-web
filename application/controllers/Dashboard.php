@@ -22,8 +22,8 @@ class Dashboard extends CI_Controller {
         $this->data['title'] = 'Dashboard';
         $this->data['page'] = 'home';
 
-        $this->data['cusers'] = $this->masterdata->countUsers();
-        $this->data['cirigasi'] = $this->masterdata->countIrigasi();
+        $this->data['cusers'] = $this->masterdata->countusers();
+        $this->data['cirigasi'] = $this->masterdata->countirigasi();
 
     	$this->load->view('dashboard', $this->data);
     }

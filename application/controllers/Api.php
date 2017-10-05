@@ -1,21 +1,61 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-
-class Api extends CI_Controller {
-
-    var $data;
+require(APPPATH.'libraries/REST_Controller.php');
+ 
+class Api extends REST_Controller {
 
     public function __construct(){
-    	parent::__construct();
+        
+        parent::__construct();
+        $this->output->enable_profiler(false);
+
     }
 
-    public function indata(){
-    	$post = $this->input->post();
-    	if(!$post){
-    		exit('error');
-    	}
+    public function indata_post(){
 
-    	$data = json_decode($post['params']);
-    	return $this->db->insert('idata', $data);
+        $json = json_decode($this->post('data'));
+    	
+    	$data = array(
+    		'uid' => $json->uid,
+    		'irigasiid' => $json->iid,
+    		'tinggi' => $json->tgg,
+    		'ket' => $json->ket,
+    		'is_banjir' => $json->fld
+    	);
+
+        $this->load->model('masterdata');
+    	$return = $this->masterdata->api_addidata($data);
+        
+        $this->response(array('sts'=>$return,'msg' => $this->masterdata->get_msg()), 200); 
+       
+
     }
+
+    public function login_post(){
+        $json = json_decode($this->post('data'));
+
+        $data = array();
+        if($json!=null){
+            $data = array(
+                'username' => $json->uid,
+                'password' => $json->pwd
+            );    
+        }
+
+        $this->load->model('masterdata');
+        $return = $this->masterdata->api_login($data);
+        $return['msg'] = $this->masterdata->get_msg();
+        
+        $this->response($return, 200); 
+       
+    }
+
+    public function irigasi_get(){
+        $this->load->model('masterdata');
+        $return = $this->masterdata->api_irigasi();
+
+        $this->response(array(
+            'status'=> true,
+            'data'=> $return), 
+        200); 
+    } 
 }
