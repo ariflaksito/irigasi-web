@@ -62,13 +62,22 @@ class Masterdata extends CoreModel {
 
         if (!$this->set_data($rules, $data)) {            
             $this->umsg = $this->msg;
-            return false;
+            return array('status' => false, 'data' => null);
         }
 
         $this->db->where('username', $data['username']);
         $this->db->where('password', $data['password']);
 
-        return $this->db->get('users')->result();
+        $rs = $this->db->get('users')->row();
+        $sts = true;
+        $this->umsg = "Login berhasil";
+
+        if(count($rs)==0){
+            $this->umsg = 'Username atau Password tidak sesuai';   
+            $sts = false;
+        } 
+
+        return array('status' => $sts, 'data' => $rs);
 
     }
 

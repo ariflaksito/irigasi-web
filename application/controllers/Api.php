@@ -32,22 +32,19 @@ class Api extends REST_Controller {
     public function login_post(){
         $json = json_decode($this->post('data'));
 
-        $data = array(
-            'username' => $json->uid,
-            'password' => $json->pwd
-        );
+        $data = array();
+        if($json!=null){
+            $data = array(
+                'username' => $json->uid,
+                'password' => $json->pwd
+            );    
+        }
 
         $this->load->model('masterdata');
         $return = $this->masterdata->api_login($data);
-
-        $sts = (count($return)>0)?true:false; 
-        $msg = (count($return)>0)?'Login Berhasil':'Login Gagal, Periksa kembali user dan password anda'; 
+        $return['msg'] = $this->masterdata->get_msg();
         
-        $this->response(array(
-            'sts'=> $sts,
-            'msg' => $msg,
-            'data'=> $return), 
-        200); 
+        $this->response($return, 200); 
        
     }
 
@@ -56,7 +53,7 @@ class Api extends REST_Controller {
         $return = $this->masterdata->api_irigasi();
 
         $this->response(array(
-            'sts'=> true,
+            'status'=> true,
             'data'=> $return), 
         200); 
     } 
