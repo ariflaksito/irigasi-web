@@ -31,7 +31,7 @@ class Dashboard extends CI_Controller {
     public function users(){
         $this->load->model('masterdata');
 
-        $this->data['title'] = 'Users';
+        $this->data['title'] = 'Petugas';
         $this->data['page']  = 'users';
         $this->data['users'] = $this->masterdata->getusers(); 
 
@@ -63,6 +63,27 @@ class Dashboard extends CI_Controller {
 
         $this->data['title'] = 'Report';
         $this->data['page'] = 'report';
+
+        $this->load->view('dashboard', $this->data);
+    }
+
+    public function alokasi(){
+        $this->data['title'] = 'Alokasi';
+        $this->data['page'] = 'alokasi';
+        $this->data['add'] = null;
+        $this->data['msg'] = "";
+
+        $this->load->model('alokasi');
+        $post = $this->input->post();
+        if($post){
+            $this->data['add'] = $this->alokasi->add($post);
+            $this->data['msg'] = $this->alokasi->get_msg();
+        }
+
+        $this->load->model('masterdata');
+        $this->data['irigasi'] = $this->masterdata->getirigasi();   
+        $this->data['users'] = $this->masterdata->getusers(); 
+        $this->data['alokasi'] = $this->alokasi->getall();
 
         $this->load->view('dashboard', $this->data);
     }

@@ -47,6 +47,11 @@
   <script src="<?php echo base_url()?>assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
   <script src="<?php echo base_url()?>assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 
+  <!-- JQuery UI -->
+  <script src="<?php echo base_url()?>assets/eac/jquery.easy-autocomplete.min.js"></script>
+  <link rel="stylesheet" href="<?php echo base_url()?>assets/eac/easy-autocomplete.min.css">
+
+
 </head>
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
 <body class="hold-transition skin-green layout-top-nav">
@@ -66,11 +71,14 @@
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <ul class="nav navbar-nav">
             <li>
-              <a href="<?php echo site_url()?>dashboard/users"><i class="fa fa-user"></i> Users</a>
+              <a href="<?php echo site_url()?>dashboard/users"><i class="fa fa-user"></i> Petugas</a>
             </li>
             <li>
               <a href="<?php echo site_url()?>dashboard/irigasi">
                 <i class="fa fa-"></i><i class="fa fa-building"></i> Irigasi</a>
+            </li>       
+            <li><a href="<?php echo site_url()?>dashboard/alokasi">
+              <i class="fa fa-check-square"></i> Alokasi</a>
             </li>            
             <li><a href="<?php echo site_url()?>dashboard/data">
               <i class="fa fa-file"></i> Data</a>

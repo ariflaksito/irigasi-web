@@ -42,7 +42,10 @@ class Api extends REST_Controller {
         }
 
         $this->load->model('masterdata');
+        $this->load->model('alokasi');
         $return = $this->masterdata->api_login($data);
+
+        $return['irigasi'] = $this->alokasi->get($return['data']->uid);
         $return['msg'] = $this->masterdata->get_msg();
         
         $this->response($return, 200); 

@@ -42,11 +42,12 @@ class Masterdata extends CoreModel {
     }
 
     public function getdata(){
-        $sql = "select u.nama, i.nama as irigasi, tinggi, ket, datetime, 
+        $sql = "select u.nama, i.nama as irigasi, tinggi, ket, datetime, type, 
             desa, kecamatan, kabupaten
             from idata d
-            join users u On d.uid = u.uid
-            join irigasi i On i.irigasiid = d.irigasiid
+            join alokasi a on a.aid = d.aid
+            join users u On a.uid = u.uid
+            join irigasi i On i.irigasiid = a.irigasiid
             Order by datetime desc";
 
         return $this->db->query($sql)->result();    
