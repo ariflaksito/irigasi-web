@@ -67,7 +67,7 @@ class Dashboard extends CI_Controller {
         $this->load->view('dashboard', $this->data);
     }
 
-    public function alokasi(){
+    public function alokasi($var = ""){
         $this->data['title'] = 'Alokasi';
         $this->data['page'] = 'alokasi';
         $this->data['add'] = null;
@@ -84,6 +84,11 @@ class Dashboard extends CI_Controller {
         $this->data['irigasi'] = $this->masterdata->getirigasi();   
         $this->data['users'] = $this->masterdata->getusers(); 
         $this->data['alokasi'] = $this->alokasi->getall();
+
+        if($var=="del"){
+            $post = $this->input->post();
+            $this->alokasi->del($post['aid']);
+        }
 
         $this->load->view('dashboard', $this->data);
     }

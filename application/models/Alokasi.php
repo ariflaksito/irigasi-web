@@ -52,4 +52,8 @@ class Alokasi extends CoreModel {
 		return $this->db->query($sql)->result();	
     }
 
+    public function del($id){
+        return $this->db->delete('alokasi', array("aid"=>$id));
+    }
+
 }

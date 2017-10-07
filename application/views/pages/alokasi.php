@@ -65,11 +65,8 @@
                 	<td><?php echo $u->desa.", ".$u->kecamatan?></td>
                 	<td><?php echo ($u->type==1)?"Pintu irigasi":"Saluran Irigasi"?></td>
                 	<td>
-                		<button class="btn btn-xs btn-success">
-                			<i class="fa fa-pencil"></i>
-                		</button>
-                		<button class="btn btn-xs btn-warning">
-                			<i class="fa fa-undo"></i>
+                		<button class="btn btn-xs btn-warning" id="del<?php echo $u->aid?>">
+                			<i class="fa fa-trash"></i>
                 		</button>
                 	</td>
                 </tr>
@@ -125,5 +122,21 @@ $(function(){
 });
 
 $('#tb-users').DataTable();
+
+<?php foreach($alokasi as $a):?>
+	$('#del<?php echo $a->aid?>').click(function () {
+        var cf = confirm("Apakah anda yakin akan menghapus"+ 
+        	" Data Alokasi untuk <?php echo $a->nama?>"+
+        	" di Irigasi <?php echo $a->irigasi?>?");
+        if(cf==true){
+            $.post("<?php echo site_url('dashboard/alokasi/del')?>",
+                {aid: <?php echo $a->aid?>}, function (data) {
+                    location.reload();
+                });
+        }else{
+            console.log("not ok");
+        }
+    })
+<?php endforeach?>
 
 </script>
