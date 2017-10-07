@@ -48,7 +48,7 @@ class Masterdata extends CoreModel {
             join alokasi a on a.aid = d.aid
             join users u On a.uid = u.uid
             join irigasi i On i.irigasiid = a.irigasiid
-            Order by datetime desc";
+            Order by datetime desc Limit 0,1000";
 
         return $this->db->query($sql)->result();    
     }    

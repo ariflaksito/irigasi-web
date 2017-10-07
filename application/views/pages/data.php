@@ -9,6 +9,7 @@
 					<th>Waktu</th>
 					<th>Nama</th>
 					<th>Irigasi</th>
+					<th>Type Irigasi</th>
 					<th>Tinggi(meter)</th>
 					<th>Ket</th>				
 				</tr>
@@ -25,6 +26,7 @@
                 		<small class="text-muted">
                 			<?php echo $u->desa.', '.$u->kecamatan.', '.$u->kabupaten?></small>
                 	</td>
+                	<td><?php echo ($u->type==1)?"Pintu Irigasi":"Saluran Irigasi"?></td>
                 	<td><?php echo $u->tinggi?></td>
                 	<td><?php echo $u->ket?></td>
                 </tr>
