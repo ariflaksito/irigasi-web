@@ -39,7 +39,7 @@ class Alokasi extends CoreModel {
             where a.uid = $uid
             Order by a.irigasiid";
 
-        return $this->db->query($sql)->row();
+        return $this->db->query($sql)->result();
     }
 
     public function getall(){
