@@ -55,8 +55,8 @@ class Masterdata extends CoreModel {
 
     public function api_addidata($data = array()){
         $rules = array(
-            array('field' => 'uid', 'label' => 'Id Petugas', 'rules' => 'required|is_natural_no_zero'),  
-            array('field' => 'irigasiid', 'label' => 'Id irigasi', 'rules' => 'required|is_natural_no_zero'),  
+            array('field' => 'aid', 'label' => 'ID Alokasi', 'rules' => 'required|is_natural_no_zero'),  
+            array('field' => 'image', 'label' => 'Gambar', 'rules' => 'trim'),  
             array('field' => 'tinggi', 'label' => 'Tinggi', 'rules' => 'required|numeric'),  
             array('field' => 'ket', 'label' => 'Keterangan', 'rules' => 'trim'),  
             array('field' => 'is_banjir', 'label' => 'Info Banjir', 'rules' => 'required|numeric')            

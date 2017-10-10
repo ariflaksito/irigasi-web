@@ -15,8 +15,8 @@ class Api extends REST_Controller {
         $json = json_decode($this->post('data'));
     	
     	$data = array(
-    		'uid' => $json->uid,
-    		'irigasiid' => $json->iid,
+    		'aid' => $json->aid,
+    		'image' => $json->img,
     		'tinggi' => $json->tgg,
     		'ket' => $json->ket,
     		'is_banjir' => $json->fld
