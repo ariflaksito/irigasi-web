@@ -11,7 +11,8 @@
 					<th>Irigasi</th>
 					<th>Type Irigasi</th>
 					<th>Tinggi(meter)</th>
-					<th>Ket</th>				
+					<th>Ket</th>			
+                    <th>Image</th>	
 				</tr>
 				</thead>
 				<tbody>
@@ -26,9 +27,20 @@
                 		<small class="text-muted">
                 			<?php echo $u->desa.', '.$u->kecamatan.', '.$u->kabupaten?></small>
                 	</td>
-                	<td><?php echo ($u->type==1)?"Pintu Irigasi":"Saluran Irigasi"?></td>
-                	<td><?php echo $u->tinggi?></td>
+                	<td><?php echo ($u->type==1)?"Pintu Air":"Bendung"?></td>
+                	<td>
+                		<?php echo $u->tinggi?><br />
+                		<?php if($u->is_banjir==1):?><span class="label label-danger">Banjir</span>
+                		<?php else:?><span class="label label-success">Tidak Banjir</span><?php endif?>	
+                	</td>
                 	<td><?php echo $u->ket?></td>
+                    <td>
+                    <?php 
+                    if(!empty($u->image)){
+                        echo "<a href='".base_url()."uploads/".$u->image."' target='_blank'>
+                        <i class='fa fa-photo'></i></a>";
+                    }
+                    ?></td>
                 </tr>
                 <?php endforeach?>	
             	</tbody>
@@ -37,3 +49,8 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+  $(function(){
+    $('#tb-users').DataTable();
+  })
+</script>

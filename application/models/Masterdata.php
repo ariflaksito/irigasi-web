@@ -43,7 +43,7 @@ class Masterdata extends CoreModel {
 
     public function getdata(){
         $sql = "select u.nama, i.nama as irigasi, tinggi, ket, datetime, type, 
-            desa, kecamatan, kabupaten
+            desa, kecamatan, kabupaten, is_banjir, image
             from idata d
             join alokasi a on a.aid = d.aid
             join users u On a.uid = u.uid

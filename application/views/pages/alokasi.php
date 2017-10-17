@@ -25,13 +25,13 @@
                	<div class="radio">
                 	<label>
                     	<input type="radio" name="type" id="optionsRadios1" value="1">
-                    	Pintu irigasi
+                    	Pintu Air
                     </label>
                	</div>
               	<div class="radio">
                   	<label>
                    		<input type="radio" name="type" id="optionsRadios2" value="2">
-                      	Saluran Irigasi
+                      	Bendung
                     </label>
                 </div>
            	</div>
@@ -63,7 +63,7 @@
                 	<td><?php echo $u->nama?></td>
                 	<td><?php echo $u->irigasi?></td>
                 	<td><?php echo $u->desa.", ".$u->kecamatan?></td>
-                	<td><?php echo ($u->type==1)?"Pintu irigasi":"Saluran Irigasi"?></td>
+                	<td><?php echo ($u->type==1)?"Pintu Air":"Bendung"?></td>
                 	<td>
                 		<button class="btn btn-xs btn-warning" id="del<?php echo $u->aid?>">
                 			<i class="fa fa-trash"></i>

@@ -45,8 +45,10 @@ class Api extends REST_Controller {
         $this->load->model('alokasi');
         $return = $this->masterdata->api_login($data);
 
-        if($return['status'])
+        if($return['status']){
             $return['irigasi'] = $this->alokasi->get($return['data']->uid);
+            $return['map'] = $this->masterdata->getirigasi();
+        }
         
         $return['msg'] = $this->masterdata->get_msg();
         

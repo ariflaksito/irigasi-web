@@ -51,6 +51,8 @@
   <script src="<?php echo base_url()?>assets/eac/jquery.easy-autocomplete.min.js"></script>
   <link rel="stylesheet" href="<?php echo base_url()?>assets/eac/easy-autocomplete.min.css">
 
+  <script src="<?php echo base_url()?>assets/bower_components/Chart.js/Chart.js"></script>
+
 
 </head>
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
