@@ -8,7 +8,13 @@ class Upload extends CI_Controller {
     }
 
     public function index(){
-    	$target_path = "uploads/";
+    	$yy = date('Y');
+    	$mm = date('m');
+    	if (!is_dir('uploads/'.$yy.'/'.$mm)) {
+		    mkdir('./uploads/' .$yy.'/'.$mm, 0777, TRUE);
+
+		}
+    	$target_path = "uploads/".$yy.'/'.$mm.'/';
  
 		// array for final json respone
 		$response = array();
@@ -20,27 +26,49 @@ class Upload extends CI_Controller {
 		    $response['file_name'] = basename($_FILES['image']['name']);		   
 		 
 		    try {
-		        // Throws exception incase file is not being moved
+		        
 		        if (!move_uploaded_file($_FILES['image']['tmp_name'], $target_path)) {
-		            // make error flag true
-		            $response['error'] = true;
-		            $response['message'] = 'Could not move the file!';
-		        }
-		 
-		        // File successfully uploaded
-		        $response['message'] = 'File uploaded successfully!';
-		        $response['error'] = false;
-		        $response['file_path'] = $file_upload_url . basename($_FILES['image']['name']);
+		            
+		            $response['status'] = false;
+		            $response['msg'] = 'Could not move the file!';
+		        }else{
+
+			        // Resize image
+			        $config['image_library'] = 'gd2';
+					$config['source_image'] = $target_path;
+					$config['maintain_ratio'] = TRUE;
+					$config['width']         = 640;
+					$config['height']       = 480;
+
+					$this->load->library('image_lib', $config);
+
+					$this->image_lib->resize();
+
+					$data = array(
+			    		'aid' => $this->input->post('aid'),
+			    		'image' => $target_path,
+			    		'tinggi' => $this->input->post('tinggi'),
+			    		'ket' => $this->input->post('ket'),
+			    		'is_banjir' => $this->input->post('flood'),
+			    	);
+
+			        $this->load->model('masterdata');
+			    	$this->masterdata->api_addidata($data);
+			 
+			        // File successfully uploaded
+			        $response['msg'] = 'File uploaded successfully!';
+			        $response['status'] = true;
+			    }    
 
 		    } catch (Exception $e) {
-		        // Exception occurred. Make error flag true
-		        $response['error'] = true;
-		        $response['message'] = $e->getMessage();
+		      
+		        $response['status'] = false;
+		        $response['msg'] = $e->getMessage();
 		    }
 		} else {
 		    // File parameter is missing
-		    $response['error'] = true;
-		    $response['message'] = 'Not received any file!';
+		    $response['status'] = true;
+		    $response['msg'] = 'Not received any file!';
 		}
 		 
 		// Echo final json response to client

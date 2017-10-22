@@ -11,7 +11,7 @@
 					<th>Irigasi</th>
 					<th>Type Irigasi</th>
 					<th>Tinggi(meter)</th>
-					<th>Ket</th>			
+					<th width="25%">Ket</th>			
                     <th>Image</th>	
 				</tr>
 				</thead>
@@ -37,7 +37,7 @@
                     <td>
                     <?php 
                     if(!empty($u->image)){
-                        echo "<a href='".base_url()."uploads/".$u->image."' target='_blank'>
+                        echo "<a href='".base_url().$u->image."' target='_blank'>
                         <i class='fa fa-photo'></i></a>";
                     }
                     ?></td>
