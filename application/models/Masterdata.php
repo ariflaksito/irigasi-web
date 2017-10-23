@@ -30,10 +30,32 @@ class Masterdata extends CoreModel {
         return $this->db->count_all_results('irigasi'); 
     }
 
-
     public function getusers(){
         $this->db->order_by('nama');
         return $this->db->get('users')->result();
+    }
+
+    public function getduser($uid){
+        $this->db->where('uid', $uid);
+        return $this->db->get('users')->row_array();
+    }
+
+    public function edituser($uid, $data){
+        $this->db->where('uid', $uid);
+        return $this->db->update('users',$data);
+    }
+
+    public function adduser($data){
+        $user = $this->_getlastiduser();
+        $data['username'] = strtolower(substr($data['nama'], 0,3)).(($user->uid)+1);
+        $data['password'] = 'pwd'.(($user->uid)+1);
+
+        return $this->db->insert('users',$data);
+    }
+
+    private function _getlastiduser(){
+        $this->db->select_max('uid');
+        return $this->db->get('users')->row();
     }
 
     public function getirigasi(){

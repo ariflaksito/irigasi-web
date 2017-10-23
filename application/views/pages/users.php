@@ -1,5 +1,11 @@
 <div class="row">
+
+    <a href=<?php echo base_url()."users/add"?> class="btn btn-success">
+        <i class="fa fa-plus"></i> Tambah Petugas
+    </a><br /><br />
+
 	<div class="box col-md-12 col-sm-12 col-xs-12">
+
 		<div class="box-body">
 
 			<table id="tb-users" class="table table-bordered">
@@ -23,12 +29,12 @@
                 	<td><?php echo $u->jabatan?></td>
                 	<td><?php echo $u->hp?></td>
                 	<td>
-                		<button class="btn btn-xs btn-success">
+                		<a href=<?php echo base_url()."users/edit/$u->uid"?> class="btn btn-xs btn-success">
                 			<i class="fa fa-pencil"></i>
-                		</button>
-                		<button class="btn btn-xs btn-warning">
+                		</a>
+                		<a href="<?php echo base_url()."users/pwd/$u->uid"?>" class="btn btn-xs btn-warning">
                 			<i class="fa fa-undo"></i>
-                		</button>
+                		</a>
                 	</td>
                 </tr>
                 <?php endforeach?>	
