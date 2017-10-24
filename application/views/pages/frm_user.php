@@ -17,27 +17,27 @@
             	<?php endif?>
 
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Nama Lengkap</label>
+                  <label>Nama Lengkap</label>
                   <input type="text" name="nama" value="<?php echo $user['nama']?>" class="form-control" placeholder="Nama Lengkap">
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">No Kontrak</label>
+                  <label>No Kontrak</label>
                   <input type="text" name="nokontrak" value="<?php echo $user['nokontrak']?>" class="form-control" placeholder="No Kontrak">
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Jabatan</label>
+                  <label>Jabatan</label>
                   <input type="text" name="jabatan" value="<?php echo $user['jabatan']?>" class="form-control" placeholder="Jabatan">
                 </div>
-				<div class="form-group">
-                  <label for="exampleInputPassword1">Pendidikan</label>
+				        <div class="form-group">
+                  <label>Pendidikan</label>
                   <input type="text" name="pendidikan" value="<?php echo $user['pendidikan']?>" class="form-control" placeholder="No Kontrak">
                 </div>              
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Alamat</label>
+                  <label>Alamat</label>
                   <input type="text" name="alamat" value="<?php echo $user['alamat']?>" class="form-control" placeholder="Alamat">
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">HP</label>
+                  <label>HP</label>
                   <input type="text" name="hp" value="<?php echo $user['hp']?>" class="form-control" placeholder="HP">
                 </div>
               </div>

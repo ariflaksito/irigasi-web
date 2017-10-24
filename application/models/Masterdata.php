@@ -26,6 +26,14 @@ class Masterdata extends CoreModel {
         return $this->db->count_all_results('users'); 
     }
 
+    public function countdata(){
+        return $this->db->count_all_results('idata'); 
+    }
+
+    public function countreport(){
+        return $this->db->count_all_results('ireport'); 
+    }
+
     public function countirigasi(){
         return $this->db->count_all_results('irigasi'); 
     }
@@ -63,6 +71,20 @@ class Masterdata extends CoreModel {
         return $this->db->get('irigasi')->result();   
     }
 
+    public function getdirigasi($id){
+        $this->db->where('irigasiid', $id);
+        return $this->db->get('irigasi')->row_array();
+    }
+
+    public function addirigasi($data){
+        return $this->db->insert('irigasi',$data);
+    }
+
+    public function editirigasi($iid, $data){
+        $this->db->where('irigasiid', $iid);
+        return $this->db->update('irigasi',$data);
+    }
+
     public function getdata(){
         $sql = "select u.nama, i.nama as irigasi, tinggi, ket, datetime, type, 
             desa, kecamatan, kabupaten, is_banjir, image
@@ -74,6 +96,17 @@ class Masterdata extends CoreModel {
 
         return $this->db->query($sql)->result();    
     }    
+
+    public function getreport(){
+        $sql = "select postdate, i.nama, u.nama as petugas, i.desa, 
+            i.kecamatan, i.kabupaten, report, image 
+            from ireport r
+            join users u on r.uid = u.uid
+            join irigasi i on i.irigasiid = r.irigasiid
+            Order by postdate desc Limit 0,1000";
+
+        return $this->db->query($sql)->result();   
+    }
 
     public function api_addidata($data = array()){
         $rules = array(
@@ -97,6 +130,29 @@ class Masterdata extends CoreModel {
             $this->umsg = 'Data gagal ditambah';
             return false;
         }
+    }
+
+    public function api_addireport($data=array()){
+        $rules = array(
+            array('field' => 'uid', 'label' => 'User ID', 'rules' => 'required|is_natural_no_zero'),  
+            array('field' => 'image', 'label' => 'Gambar', 'rules' => 'trim'),  
+            array('field' => 'irigasiid', 'label' => 'Irigasi ID', 'rules' => 'required|numeric'),  
+            array('field' => 'report', 'label' => 'Keterangan', 'rules' => 'trim')         
+        ); 
+
+        if (!$this->set_data($rules, $data)) {            
+            $this->umsg = $this->msg;
+            return false;
+        }   
+
+        $data['postdate'] = date('c');
+        if ($this->db->insert('ireport', $data)) {
+            $this->umsg = 'Report berhasil ditambah';
+            return true;
+        } else {
+            $this->umsg = 'Report gagal ditambah';
+            return false;
+        }    
     }
 
     public function api_login($data = array()){

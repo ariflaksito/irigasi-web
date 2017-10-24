@@ -1,8 +1,13 @@
 <div class="row">
+
+	<a href=<?php echo base_url()."irigasi/add"?> class="btn btn-success">
+        <i class="fa fa-plus"></i> Tambah Irigasi
+    </a><br /><br />
+
 	<div class="box col-md-12 col-sm-12 col-xs-12">
 		<div class="box-body">
 
-			<table id="tb-users" class="table table-bordered">
+			<table id="tb-users" class="table table-bordered table-striped">
 				<thead>
 				<tr>
 					<th>#</th>
@@ -21,9 +26,9 @@
                 	<td><?php echo $i->desa.', '.$i->kecamatan.', '.$i->kabupaten?></td>
                 	<td><?php echo $i->latitude.', '.$i->longitude?></td>
                 	<td>
-                		<button class="btn btn-xs btn-success">
+                		<a href=<?php echo base_url()."irigasi/edit/$i->irigasiid"?> class="btn btn-xs btn-success">
                 			<i class="fa fa-pencil"></i>
-                		</button>
+                		</a>
                 	</td>
                 </tr>
                 <?php endforeach?>	

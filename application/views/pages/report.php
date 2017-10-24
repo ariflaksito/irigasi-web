@@ -2,7 +2,7 @@
 	<div class="box col-md-12 col-sm-12 col-xs-12">
 		<div class="box-body">
 
-			<table id="tb-users" class="table table-bordered">
+			<table id="tb-users" class="table table-bordered table-striped">
 				<thead>
 				<tr>
 					<th>#</th>
@@ -14,44 +14,35 @@
 				</tr>
 				</thead>
 				<tbody>
+				<?php $no = 1;?>
+                <?php foreach ($report as $i):?>
 				<tr>
-					<td>1</td>
-					<td>12 Oct 2017 ~ 06:16</td>
-					<td>Arif Supriyadi</td>
-					<td>Kanoman<br />
-						<small class="text-muted">Kanoman, Gamping, Sleman</small></td>
-					<td>Rusak bagian pintu</td>
-					<td></td>
-				</tr>	
-				<tr>
-					<td>2</td>
-					<td>12 Oct 2017 ~ 05:22</td>
-					<td>Arif Supriyadi</td>
-					<td>Kanoman<br />
-						<small class="text-muted">Kanoman, Gamping, Sleman</small></td>
-					<td>Cek laporan</td>
-					<td></td>
-				</tr>	
-				<tr>
-					<td>3</td>
-					<td>12 Oct 2017 ~ 05:46</td>
-					<td>Arif Supriyadi</td>
-					<td>Kanoman<br />
-						<small class="text-muted">Kanoman, Gamping, Sleman</small></td>
-					<td>Tes Uji Coba</td>
-					<td></td>
-				</tr>	
-				<tr>
-					<td>4</td>
-					<td>12 Oct 2017 ~ 10:38</td>
-					<td>Supomo</td>
-					<td>Mojo<br />
-						<small class="text-muted"></small></td>
-					<td>tes report</td>
-					<td></td>
-				</tr>	
+					<td><?php echo $no++?></td>
+					<td><?php echo date_format(date_create($i->postdate), 'd M Y ~ H:i')?></td>
+					<td><?php echo $i->petugas?></td>
+					<td><?php echo $i->nama?><br />
+						<small class="text-muted">
+							<?php echo $i->desa.', '.$i->kecamatan.', '.$i->kabupaten?>
+						</small>
+					</td>
+					<td><?php echo $i->report?></td>
+					<td>
+						<?php 
+	                    if(!empty($i->image)){
+	                        echo "<a href='".base_url().$i->image."' target='_blank'>
+	                        <i class='fa fa-photo'></i></a>";
+	                    }
+	                    ?>
+					</td>
+				</tr>
+				<?php endforeach;?>	
 				</tbody>
 			</table>
 		</div>
 	</div>		
 </div>
+<script type="text/javascript">
+  $(function(){
+    $('#tb-users').DataTable();
+  })
+</script>

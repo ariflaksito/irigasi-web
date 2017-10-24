@@ -2,7 +2,7 @@
 	<div class="box col-md-12 col-sm-12 col-xs-12">
 		<div class="box-body">
 
-			<table id="tb-users" class="table table-bordered">
+			<table id="tb-users" class="table table-bordered table-striped">
 				<thead>
 				<tr>
 					<th>#</th>
@@ -10,7 +10,7 @@
 					<th>Nama</th>
 					<th>Irigasi</th>
 					<th>Type Irigasi</th>
-					<th>Tinggi(meter)</th>
+					<th>Tinggi(cm)</th>
 					<th width="25%">Ket</th>			
                     <th>Image</th>	
 				</tr>

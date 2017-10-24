@@ -34,6 +34,30 @@
         </div>
         <!-- /.info-box -->
     </div>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-green"><i class="fa fa-bar-chart"></i></span>
+
+            <div class="info-box-content">
+                <span class="info-box-text">Jumlah Data</span>
+                <span class="info-box-number"><?php echo number_format($cdata)?></span>
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-orange"><i class="fa fa-commenting"></i></span>
+
+            <div class="info-box-content">
+                <span class="info-box-text">Jumlah Laporan</span>
+                <span class="info-box-number"><?php echo $creport?></span>
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+    </div>
     <!-- /.col -->
 </div>
 <div class="row">

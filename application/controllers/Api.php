@@ -26,8 +26,24 @@ class Api extends REST_Controller {
     	$return = $this->masterdata->api_addidata($data);
         
         $this->response(array('sts'=>$return,'msg' => $this->masterdata->get_msg()), 200); 
-       
 
+    }
+
+    public function inreport_post(){
+        
+        $json = json_decode($this->post('data'));
+        
+        $data = array(
+            'uid' => $json->uid,
+            'irigasiid' => $json->iid,
+            'image' => $json->img,
+            'report' => $json->report
+        );
+
+        $this->load->model('masterdata');
+        $return = $this->masterdata->api_addireport($data);
+
+        $this->response(array('sts'=>$return,'msg' => $this->masterdata->get_msg()), 200); 
     }
 
     public function login_post(){

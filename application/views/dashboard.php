@@ -109,7 +109,7 @@
 
                   <p>
                     <?php echo $sess['fullname']?>
-                    <small><?php echo $sess['lastlog']?></small>
+                    <small><?php echo date_format(date_create($sess['lastlog']), 'd M Y H:i')?></small>
                   </p>
                 </li>
                 

@@ -42,7 +42,7 @@
         </div>
            	
         <div class="box-body">   	
-           	<table id="tb-users" class="table table-bordered">
+           	<table id="tb-users" class="table table-bordered table-striped">
 				<thead>
 				<tr>
 					<th>#</th>

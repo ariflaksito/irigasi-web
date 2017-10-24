@@ -24,6 +24,8 @@ class Dashboard extends CI_Controller {
 
         $this->data['cusers'] = $this->masterdata->countusers();
         $this->data['cirigasi'] = $this->masterdata->countirigasi();
+        $this->data['cdata'] = $this->masterdata->countdata();
+        $this->data['creport'] = $this->masterdata->countreport();
 
     	$this->load->view('dashboard', $this->data);
     }
@@ -63,6 +65,7 @@ class Dashboard extends CI_Controller {
 
         $this->data['title'] = 'Report';
         $this->data['page'] = 'report';
+        $this->data['report'] = $this->masterdata->getreport();
 
         $this->load->view('dashboard', $this->data);
     }
