@@ -81,4 +81,14 @@ class Api extends REST_Controller {
             'data'=> $return), 
         200); 
     } 
+
+    public function report_get($id){
+        $this->load->model('masterdata');
+        $return = $this->masterdata->getdreport($id);
+
+        $this->response(array(
+            'status'=> true,
+            'data'=> $return), 
+        200); 
+    }
 }

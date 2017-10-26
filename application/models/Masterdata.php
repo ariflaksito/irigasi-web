@@ -97,6 +97,18 @@ class Masterdata extends CoreModel {
         return $this->db->query($sql)->result();    
     }    
 
+    public function getdreport($uid){
+        $sql = "select u.nama, i.nama as irigasi, report, 
+            date_format(postdate, '%d %b %H:%i') as postdate
+            from ireport r
+            join users u On u.uid = r.uid
+            join irigasi i On i.irigasiid = r.irigasiid
+            Where u.uid = $uid
+            Order by postdate desc Limit 0,50";
+
+        return $this->db->query($sql)->result();    
+    }
+
     public function getreport(){
         $sql = "select postdate, i.nama, u.nama as petugas, i.desa, 
             i.kecamatan, i.kabupaten, report, image 
