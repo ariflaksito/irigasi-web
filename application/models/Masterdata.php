@@ -137,7 +137,7 @@ class Masterdata extends CoreModel {
             array('field' => 'uid', 'label' => 'User ID', 'rules' => 'required|is_natural_no_zero'),  
             array('field' => 'image', 'label' => 'Gambar', 'rules' => 'trim'),  
             array('field' => 'irigasiid', 'label' => 'Irigasi ID', 'rules' => 'required|numeric'),  
-            array('field' => 'report', 'label' => 'Keterangan', 'rules' => 'trim')         
+            array('field' => 'report', 'label' => 'Keterangan', 'rules' => 'required|trim')         
         ); 
 
         if (!$this->set_data($rules, $data)) {            

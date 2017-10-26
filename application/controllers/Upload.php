@@ -44,16 +44,29 @@ class Upload extends CI_Controller {
 
 					$this->image_lib->resize();
 
-					$data = array(
-			    		'aid' => $this->input->post('aid'),
-			    		'image' => $target_path,
-			    		'tinggi' => $this->input->post('tinggi'),
-			    		'ket' => $this->input->post('ket'),
-			    		'is_banjir' => $this->input->post('flood'),
-			    	);
+					if(!empty($this->input->post('report'))){
+						$data = array(
+				    		'uid' => $this->input->post('uid'),
+				    		'image' => $target_path,
+				    		'irigasiid' => $this->input->post('iid'),
+				    		'report' => $this->input->post('report')
+				    	);
 
-			        $this->load->model('masterdata');
-			    	$this->masterdata->api_addidata($data);
+				    	$this->load->model('masterdata');
+				    	$this->masterdata->api_addireport($data);	
+
+					}else{
+						$data = array(
+				    		'aid' => $this->input->post('aid'),
+				    		'image' => $target_path,
+				    		'tinggi' => $this->input->post('tinggi'),
+				    		'ket' => $this->input->post('ket'),
+				    		'is_banjir' => $this->input->post('flood'),
+				    	);
+
+				        $this->load->model('masterdata');
+				    	$this->masterdata->api_addidata($data);	
+					}
 			 
 			        // File successfully uploaded
 			        $response['msg'] = 'File uploaded successfully!';
